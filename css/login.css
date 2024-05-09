@@ -1,0 +1,246 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: grid;
+    place-items: center;
+    gap: 50px;
+    margin: 0;
+    height: 100vh;
+    padding: 0 32px;
+    background: #eff9ff;
+    font-family: "Euclid Circular A", "Poppins";
+  }
+  
+  @media (width >= 500px) {
+    body {
+      padding: 0;
+    }
+    
+  }
+
+  .background {
+    position: fixed;
+    top: -50vmin;
+    left: -50vmin;
+    width: 100vmin;
+    height: 100vmin;
+    border-radius: 47% 53% 61% 39% / 45% 51% 49% 55%;
+    background: #235c9c;
+  }
+  
+  .background::after {
+    content: "";
+    position: inherit;
+    right: -50vmin;
+    bottom: -55vmin;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    background: #811414;
+  }
+  
+  .card {
+    overflow: hidden;
+    position: relative;
+    z-index: 3;
+    width: 94%;
+    margin: 0 20px;
+    padding: 170px 30px 54px;
+    border-radius: 24px;
+    background: #ffffff;
+    text-align: center;
+    box-shadow: 0 100px 100px rgb(0 0 0 / 10%);
+  }
+  
+  .card::before {
+    content: "";
+    position: absolute;
+    top: -880px;
+    left: 50%;
+    translate: -50% 0;
+    width: 1000px;
+    height: 1000px;
+    border-radius: 50%;
+    background: #235c9c;
+  }
+  
+  @media (width >= 500px) {
+    .card {
+      margin: 0;
+      width: 360px;
+    }
+  }
+  
+  .card .logo {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    translate: -50% 0;
+    width: 64px;
+    height: 64px;
+  }
+  
+  .card > h2 {
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0 0 38px;
+    color: rgb(0 0 0 / 38%);
+  }
+  
+  .form {
+    margin: 0 0 44px;
+    display: grid;
+    gap: 12px;
+  }
+  
+  .form :is(input, button) {
+    width: 100%;
+    height: 56px;
+    border-radius: 28px;
+    font-size: 16px;
+    font-family: inherit;
+  }
+  
+  .form > input {
+    border: 0;
+    padding: 0 24px;
+    color: #222222;
+    background: #ededed;
+  }
+  
+  .form > input::placeholder {
+    color: rgb(0 0 0 / 28%);
+  }
+  
+  .form > button {
+    border: 0;
+    color: #f9f9f9;
+    background: #e72121;
+    display: grid;
+    place-items: center;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .card > footer {
+    color: #a1a1a1;
+  }
+  
+  .card > footer > a {
+    color: #219ee7;
+  }
+
+  .dark-mode {
+    background-color: #222;
+    color: #fff;
+  }
+  
+  .switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 64px;
+    height: 34px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #73C0FC;
+    transition: .4s;
+    border-radius: 30px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+    left: 2px;
+    bottom: 2px;
+    z-index: 2;
+    background-color: #e8e8e8;
+    transition: .4s;
+  }
+  
+  .sun svg {
+    position: absolute;
+    top: 6px;
+    left: 36px;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .moon svg {
+    fill: #73C0FC;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* .switch:hover */.sun svg {
+    animation: rotate 15s linear infinite;
+  }
+  
+  @keyframes rotate {
+   
+    0% {
+      transform: rotate(0);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* .switch:hover */.moon svg {
+    animation: tilt 5s linear infinite;
+  }
+  
+  @keyframes tilt {
+   
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    25% {
+      transform: rotate(-10deg);
+    }
+  
+    75% {
+      transform: rotate(10deg);
+    }
+  
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  
+  .input:checked + .slider {
+    background-color: #183153;
+  }
+  
+  .input:focus + .slider {
+    box-shadow: 0 0 1px #183153;
+  }
+  
+  .input:checked + .slider:before {
+    transform: translateX(30px);
+  }
