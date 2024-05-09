@@ -16,13 +16,46 @@
     <br><br>
     <h2>SELAMAT DATANG</h2>
     <form class="form" id="loginForm">
-      <input type="email" placeholder="Username" />
-      <input type="password" placeholder="Password" />
-      <button type="submit">Login</button> 
+      <div class="inputGroup">
+          <input type="text" required="" autocomplete="off">
+          <label for="username">Username</label>
+      </div>
+      <div class="inputGroup">
+          <input type="password" required="" autocomplete="off">
+          <label for="password">Password</label>
+      </div>
+      <button type="submit" class="button">
+  <div class="button-top">LOGIN</div>
+  <div class="button-bottom"></div>
+  <div class="button-base"></div>
+</button>
     </form>
     <footer>
       Belum punya akun?
-      <a href="#">daftar</a>
+      <br>
+      <button class="daftar">
+        <div class="text">
+          <span>Daftar</span>
+        </div>
+        <div class="clone">
+          <span>Daftar</span>
+        </div>
+        <svg
+          stroke-width="2"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          fill="none"
+          class="h-6 w-6"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20px"
+        >
+          <path
+            d="M14 5l7 7m0 0l-7 7m7-7H3"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+          ></path>
+        </svg>
+      </button>
     </footer>
   </div>
   

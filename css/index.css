@@ -19,3 +19,17 @@ body.dark-mode .sidebar {
   color: #ffffff;
 }
 
+.card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover .card-body {
+  display: block;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+
+
+

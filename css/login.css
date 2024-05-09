@@ -95,7 +95,7 @@
     gap: 12px;
   }
   
-  .form :is(input, button) {
+  .form :is(input) {
     width: 100%;
     height: 56px;
     border-radius: 28px;
@@ -114,15 +114,7 @@
     color: rgb(0 0 0 / 28%);
   }
   
-  .form > button {
-    border: 0;
-    color: #f9f9f9;
-    background: #e72121;
-    display: grid;
-    place-items: center;
-    font-weight: 500;
-    cursor: pointer;
-  }
+
   
   .card > footer {
     color: #a1a1a1;
@@ -243,4 +235,223 @@
   
   .input:checked + .slider:before {
     transform: translateX(30px);
+  }
+
+  .inputGroup {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 1em 0 1em 0;
+    max-width: 1000px;
+    position: relative;
+  }
+  
+  .inputGroup input {
+    font-size: 100%;
+    padding: 0.8em;
+    outline: none;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: transparent;
+    border-radius: 30px;
+    width: 100%;
+  }
+  
+  .inputGroup label {
+    font-size: 100%;
+    position: absolute;
+    left: 0;
+    padding: 0.8em;
+    margin-left: 0.5em;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: rgb(100, 100, 100);
+  }
+  
+  .inputGroup :is(input:focus, input:valid)~label {
+    transform: translateY(-50%) scale(.9);
+    margin: 0em;
+    margin-left: 1.3em;
+    padding: 0.4em;
+    background-color: #ffffff;
+  }
+  
+  .inputGroup :is(input:focus, input:valid) {
+    border-color: rgb(150, 150, 200);
+  }
+
+  .button {
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    border-width: 0;
+    padding: 0 8px 12px;
+    min-width: 10em;
+    box-sizing: border-box;
+    background: transparent;
+    font: inherit;
+    cursor: pointer;
+  }
+  
+  .button-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 0;
+    padding: 8px 16px;
+    transform: translateY(0);
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 -1px rgba(0, 0, 0, .25);
+    transition-property: transform;
+    transition-duration: .2s;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  .button:active .button-top {
+    transform: translateY(6px);
+  }
+  
+  .button-top::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    box-sizing: content-box;
+    background-image: radial-gradient(#cd3f64, #9d3656);
+    text-align: center;
+    color: #fff;
+    box-shadow: inset 0 0 0px 1px rgba(255, 255, 255, .2), 0 1px 2px 1px rgba(255, 255, 255, .2);
+    transition-property: border-radius, padding, width, transform;
+    transition-duration: .2s;
+  }
+  
+  .button:active .button-top::after {
+    border-radius: 6px;
+    padding: 0 2px;
+  }
+  
+  .button-bottom {
+    position: absolute;
+    z-index: -1;
+    bottom: 4px;
+    left: 4px;
+    border-radius: 8px / 16px 16px 8px 8px;
+    padding-top: 6px;
+    width: calc(100% - 8px);
+    height: calc(100% - 10px);
+    box-sizing: content-box;
+    background-color: #803;
+    background-image: radial-gradient(4px 8px at 4px calc(100% - 8px), rgba(255, 255, 255, .25), transparent), radial-gradient(4px 8px at calc(100% - 4px) calc(100% - 8px), rgba(255, 255, 255, .25), transparent), radial-gradient(16px at -4px 0, white, transparent), radial-gradient(16px at calc(100% + 4px) 0, white, transparent);
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5), inset 0 -1px 3px 3px rgba(0, 0, 0, .4);
+    transition-property: border-radius, padding-top;
+    transition-duration: .2s;
+  }
+  
+  .button:active .button-bottom {
+    border-radius: 10px 10px 8px 8px / 8px;
+    padding-top: 0;
+  }
+  
+  .button-base {
+    position: absolute;
+    z-index: -2;
+    top: 4px;
+    left: 0;
+    border-radius: 12px;
+    width: 100%;
+    height: calc(100% - 4px);
+    background-color: rgba(0, 0, 0, .15);
+    box-shadow: 0 1px 1px 0 rgba(255, 255, 255, .75), inset 0 2px 2px rgba(0, 0, 0, .25);
+  }
+
+  .daftar {
+    width: 100px;
+    height: 40px;
+    overflow: hidden;
+    border: none;
+    color: #0d7ef8;
+    background: none;
+    position: relative;
+    padding-bottom: 1em;
+    cursor: pointer;
+  }
+
+  .daftar > div,
+  .daftar > svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+
+  .daftar:before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    background: currentColor;
+    transition: transform 0.25s ease-out;
+  }
+
+  .daftar:hover:before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  .daftar .clone > *,
+  .daftar .text > * {
+    opacity: 1;
+    font-size: 1rem;
+    transition: 0.2s;
+    margin-left: 4px;
+  }
+
+  .daftar .clone > * {
+    transform: translateY(60px);
+  }
+
+  .daftar:hover .clone > * {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  }
+
+  .daftar:hover .text > * {
+    opacity: 1;
+    transform: translateY(-60px);
+    transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+  }
+
+  .daftar:hover .clone > :nth-child(1) {
+    transition-delay: 0.15s;
+  }
+
+  .daftar:hover .clone > :nth-child(2) {
+    transition-delay: 0.2s;
+  }
+
+  .daftar:hover .clone > :nth-child(3) {
+    transition-delay: 0.25s;
+  }
+
+  .daftar:hover .clone > :nth-child(4) {
+    transition-delay: 0.3s;
+  }
+  /* icon style and hover */
+  .daftar svg {
+    width: 20px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(-50deg);
+    transition: 0.2s ease-out;
+  }
+
+  .daftar:hover svg {
+    transform: translateY(-50%) rotate(-90deg);
   }
