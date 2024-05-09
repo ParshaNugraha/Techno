@@ -1,24 +1,8 @@
-function toggleDarkMode() {
-  const body = document.body;
-  body.classList.toggle("dark-mode");
-}
+document.addEventListener('DOMContentLoaded', function() {
+  const darkModeToggle = document.getElementById('toggleDarkMode');
 
-
-const darkModeSwitch = document.getElementById("darkModeSwitch");
-
-
-if (localStorage.getItem("darkModeEnabled") === "true") {
-  darkModeSwitch.checked = true;
-  document.body.classList.add("dark-mode");
-}
-
-
-darkModeSwitch.addEventListener("change", function() {
-  if (darkModeSwitch.checked) {
-    document.body.classList.add("dark-mode");
-    localStorage.setItem("darkModeEnabled", "true");
-  } else {
-    document.body.classList.remove("dark-mode");
-    localStorage.setItem("darkModeEnabled", "false");
-  }
+  darkModeToggle.addEventListener('click', function() {
+    const bodyElement = document.getElementById('page-top');
+    bodyElement.classList.toggle('dark-mode');
+  });
 });
