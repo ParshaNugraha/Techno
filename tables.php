@@ -55,14 +55,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="charts.php">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Grafik</span></a>
+                    <span>Analisis Keuangan</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.php">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>Pendapatan</span></a>
+            </li>
+
+             <!-- Nav Item - Product -->
+            <li class="nav-item">
+                <a class="nav-link" href="product.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Produk</span></a>
             </li>
 
             <!-- Divider -->
