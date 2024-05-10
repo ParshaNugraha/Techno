@@ -170,7 +170,7 @@
                                             <th>Harga Jual</th>
                                             <th>Untung</th>
                                             <th>Rugi</th>
-                                            <th>Salary</th>
+                                            <th>Tanggal</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -180,7 +180,7 @@
                                             <th>Harga Jual</th>
                                             <th>Untung</th>
                                             <th>Rugi</th>
-                                            <th>Salary</th>
+                                            <th>Tanggal</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
