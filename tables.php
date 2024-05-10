@@ -55,7 +55,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="charts.php">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Analisis Keuangan</span></a>
+                    <span>Analisis Grafik</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
@@ -67,7 +67,7 @@
 
              <!-- Nav Item - Product -->
             <li class="nav-item">
-                <a class="nav-link" href="product.php">
+                <a class="nav-link" href="produk.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Produk</span></a>
             </li>
@@ -152,13 +152,13 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Table</h1>
-                    <p class="mb-4">Data table penjualan produk selama satu bulan</p>
+                    <h1 class="h3 mb-2 text-gray-800">Tabel Pendapatan</h1>
+                    <p class="mb-4">Data table penjualan produk</p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTable</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data Tabel</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

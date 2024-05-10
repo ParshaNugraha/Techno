@@ -58,7 +58,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="charts.php">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Analisis Keuangan</span></a>
+                    <span>Analisis Grafik</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
@@ -163,7 +163,7 @@
 
                     <div class="card1 shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTable</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data Tabel</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

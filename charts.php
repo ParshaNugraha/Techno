@@ -55,7 +55,7 @@
 <li class="nav-item">
     <a class="nav-link" href="charts.php">
         <i class="fas fa-fw fa-chart-area"></i>
-        <span>Analisis Keuangan</span></a>
+        <span>Analisis Grafik</span></a>
 </li>
 
 <!-- Nav Item - Tables -->
@@ -67,7 +67,7 @@
 
  <!-- Nav Item - Product -->
 <li class="nav-item">
-    <a class="nav-link" href="product.php">
+    <a class="nav-link" href="produk.php">
         <i class="fas fa-fw fa-table"></i>
         <span>Produk</span></a>
 </li>
@@ -162,7 +162,7 @@
                             <!-- Area Chart -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Grafik Area</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Grafik Garis</h6>
                                     <p align="justify">Grafik area ini memberikan gambaran visual tentang pertumbuhan penjualan selama satu minggu penuh. </p>
                                 </div>
                                 <div class="card-body">
@@ -177,7 +177,7 @@
                             <!-- Bar Chart -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Grafik Bar</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-bar">
@@ -194,7 +194,7 @@
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Grafik Donat</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Grafik Lingkaran</h6>
                                     <h8>Grafik ini menggambarkan nilai keuntungan dan kerugian</h8>
                                 </div>
                                 <!-- Card Body -->
