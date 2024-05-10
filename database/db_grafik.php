@@ -2,7 +2,7 @@
     session_start();
 
     define('SITEURL','http://localhost/Techno/');
-    define('LOCALHOST','localhost');
+    define('LOCALHOST','127.0.0.1');
     define('DB_USERNAME',"root");
     define('DB_PASSWORD','');
     define('DB_NAME','grafik');
