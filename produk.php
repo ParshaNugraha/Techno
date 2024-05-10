@@ -119,7 +119,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                               
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -156,7 +156,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mr-2">Produk</h1>
-                        <a href="#" class="btn btn-primary ">Tambah</a>
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#TambahProduk">Tambah</a>
                     </div>
 
                     <!-- Content Row -->
@@ -172,11 +172,11 @@
                                         <tr>
                                             <th>Nama</th>
                                             <th>Harga</th>
-                                            <th>Quantitas</th>
+                                           
                                             <th>Stok Awal</th>
                                             <th>Stok Akhir</th>
                                             <th>Jumlah</th>
-                                            <th>Fitur</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <!-- <tfoot>
@@ -194,13 +194,13 @@
                                         <tr>
                                             <td>Garrett Winters</td>
                                             <td>Accountant</td>
-                                            <td>Tokyo</td>
+                                          
                                             <td>63</td>
                                             <td>2011/07/25</td>
                                             <td>$170,750</td>
                                             <td>
-                                                <a href="#" class="btn btn-success ">Edit</a>
-                                                <a href="#" class="btn btn-danger ">Hapus</a>
+                                                <a href="#" class="btn btn-success " data-toggle="modal" data-target="#EditProduk">Edit</a>
+                                                <a href="#" class="btn btn-danger " data-toggle="modal" data-target="#HapusProduk">Hapus</a>
                                             </td>
                                         </tr>
 
@@ -274,6 +274,110 @@
             </div>
         </div>
 
+ <!-- Modal -->
+    <div class="modal fade" id="TambahProduk" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Tambah Data Produk</h3>
+        </div>
+        <div class="modal-body">
+          <form action="proses_tambah_produk.php" method="post">
+              <div class="form-group">
+                  <label for="namaProduk">Nama Produk:</label>
+                  <input type="text" class="form-control" id="namaProduk" name="namaProduk" required>
+              </div>
+              <div class="form-group">
+                  <label for="hargaProduk">Harga Produk:</label>
+                  <input type="number" class="form-control" id="hargaProduk" name="hargaProduk" required>
+              </div>
+              <div class="form-group">
+                  <label for="stokAwal">Stok Awal:</label>
+                  <input type="number" class="form-control" id="stokAwal" name="stokAwal" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Tambah</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="modal fade" id="EditProduk" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Tambah Data Produk</h3>
+        </div>
+        <div class="modal-body">
+          <form action="proses_tambah_produk.php" method="post">
+              <div class="form-group">
+                  <label for="namaProduk">Nama Produk:</label>
+                  <input type="text" class="form-control" id="namaProduk" name="namaProduk" required>
+              </div>
+              <div class="form-group">
+                  <label for="hargaProduk">Harga Produk:</label>
+                  <input type="number" class="form-control" id="hargaProduk" name="hargaProduk" required>
+              </div>
+              <div class="form-group">
+                  <label for="stokAwal">Stok Awal:</label>
+                  <input type="number" class="form-control" id="stokAwal" name="stokAwal" required>
+              </div>
+              <div class="form-group">
+                  <label for="stokAkhir">Stok Akhir:</label>
+                  <input type="number" class="form-control" id="stokAkhir" name="stokAkhir" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Tambah</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="modal fade" id="HapusProduk" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Tambah Data Produk</h3>
+        </div>
+        <div class="modal-body">
+          <form action="proses_tambah_produk.php" method="post">
+              <div class="form-group">
+                  <label for="namaProduk">Nama Produk:</label>
+                  <input type="text" class="form-control" id="namaProduk" name="namaProduk" required>
+              </div>
+              <div class="form-group">
+                  <label for="hargaProduk">Harga Produk:</label>
+                  <input type="number" class="form-control" id="hargaProduk" name="hargaProduk" required>
+              </div>
+              <div class="form-group">
+                  <label for="stokAwal">Stok Awal:</label>
+                  <input type="number" class="form-control" id="stokAwal" name="stokAwal" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Tambah</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- End Modal -->
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
