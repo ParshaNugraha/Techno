@@ -170,40 +170,43 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>No</th>
                                             <th>Nama</th>
-                                            <th>Harga</th>
-                                           
+                                            <th>Harga</th>                                          
                                             <th>Stok Awal</th>
                                             <th>Stok Akhir</th>
                                             <th>Jumlah</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <!-- <tfoot>
-                                        <tr>
-                                            <th>Nama Produk</th>
-                                            <th>Harga Beli</th>
-                                            <th>Harga Jual</th>
-                                            <th>Untung</th>
-                                            <th>Rugi</th>
-                                            <th>Salary</th>
-                                        </tr> -->
-                                    </tfoot>
                                     <tbody>
-
+                                    <?php
+                                    $query = "SELECT * FROM produk";
+                                    $result = mysqli_query($conn, $query);
+                                    $i = 1;
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        $id = $row['id'];
+                                        $nama = $row['Nama'];
+                                        $harga = $row['harga'];
+                                        $stok_awal = $row['stok_awal'];
+                                        $stok_akhir = $row['stok_akhir'];
+                                        $jumlah = $row['Jumlah'];
+                                    ?>
                                         <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                          
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
+                                            <td><?php echo $i++; ?></td>
+                                            <td><?php echo $row['Nama']; ?></td>
+                                            <td><?php echo $row['harga']; ?></td>
+                                            <td><?php echo $row['stok_awal']; ?></td>
+                                            <td><?php echo $row['stok_akhir']; ?></td>
+                                            <td><?php echo $row['Jumlah']; ?></td>
                                             <td>
                                                 <a href="#" class="btn btn-success " data-toggle="modal" data-target="#EditProduk">Edit</a>
                                                 <a href="#" class="btn btn-danger " data-toggle="modal" data-target="#HapusProduk">Hapus</a>
                                             </td>
                                         </tr>
-
+                                    <?php
+                                    }
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -275,6 +278,7 @@
         </div>
 
  <!-- Modal -->
+                <!-- Tambah Produk -->
     <div class="modal fade" id="TambahProduk" role="dialog">
     <div class="modal-dialog">
     
@@ -284,7 +288,7 @@
           <h3>Tambah Data Produk</h3>
         </div>
         <div class="modal-body">
-          <form action="proses_tambah_produk.php" method="post">
+          <form method="post">
               <div class="form-group">
                   <label for="namaProduk">Nama Produk:</label>
                   <input type="text" class="form-control" id="namaProduk" name="namaProduk" required>
@@ -297,7 +301,7 @@
                   <label for="stokAwal">Stok Awal:</label>
                   <input type="number" class="form-control" id="stokAwal" name="stokAwal" required>
               </div>
-              <button type="submit" class="btn btn-primary">Tambah</button>
+              <button type="submit" class="btn btn-primary" name="tambahproduk">Tambah</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -308,33 +312,34 @@
     </div>
   </div>
 
+  <!-- Edit Produk -->
   <div class="modal fade" id="EditProduk" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h3>Tambah Data Produk</h3>
+          <h3>Edit Data <?=$nama; ?></h3>
         </div>
         <div class="modal-body">
-          <form action="proses_tambah_produk.php" method="post">
+          <form method="post">
               <div class="form-group">
                   <label for="namaProduk">Nama Produk:</label>
-                  <input type="text" class="form-control" id="namaProduk" name="namaProduk" required>
+                  <input type="text" class="form-control" id="namaProduk" name="namaProduk" value="<?= $nama; ?>" required>
               </div>
               <div class="form-group">
                   <label for="hargaProduk">Harga Produk:</label>
-                  <input type="number" class="form-control" id="hargaProduk" name="hargaProduk" required>
+                  <input type="number" class="form-control" id="hargaProduk" name="hargaProduk" value="<?= $harga; ?>" required>
               </div>
               <div class="form-group">
                   <label for="stokAwal">Stok Awal:</label>
-                  <input type="number" class="form-control" id="stokAwal" name="stokAwal" required>
+                  <input type="number" class="form-control" id="stokAwal" name="stokAwal" value="<?= $stok_awal; ?>" required>
               </div>
               <div class="form-group">
                   <label for="stokAkhir">Stok Akhir:</label>
-                  <input type="number" class="form-control" id="stokAkhir" name="stokAkhir" required>
+                  <input type="number" class="form-control" id="stokAkhir" name="stokAkhir" value="<?= $stok_akhir; ?>" required>
               </div>
-              <button type="submit" class="btn btn-primary">Tambah</button>
+              <button type="submit" class="btn btn-primary" name="editproduk">Edit</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -345,34 +350,25 @@
     </div>
   </div>
 
+  <!-- Hapus Produk -->
   <div class="modal fade" id="HapusProduk" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h3>Tambah Data Produk</h3>
+          <h3>Hapus Data</h3>
         </div>
-        <div class="modal-body">
-          <form action="proses_tambah_produk.php" method="post">
-              <div class="form-group">
-                  <label for="namaProduk">Nama Produk:</label>
-                  <input type="text" class="form-control" id="namaProduk" name="namaProduk" required>
-              </div>
-              <div class="form-group">
-                  <label for="hargaProduk">Harga Produk:</label>
-                  <input type="number" class="form-control" id="hargaProduk" name="hargaProduk" required>
-              </div>
-              <div class="form-group">
-                  <label for="stokAwal">Stok Awal:</label>
-                  <input type="number" class="form-control" id="stokAwal" name="stokAwal" required>
-              </div>
-              <button type="submit" class="btn btn-primary">Tambah</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+        <form method="post">
+          <div class="modal-body">
+            <h5>Yakin untuk menghapus produk <?= $nama; ?>?</h5>
+            <input type="hidden" name="idProduk" value="<?= $id; ?>">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-danger" name="hapusproduk">Hapus</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+          </div>
+        </form>
       </div>
       
     </div>
