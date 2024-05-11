@@ -29,14 +29,12 @@
     }
 
 if(isset($_POST['editproduk'])){
-    $id = $_POST['idProduk'];
     $nama = $_POST['namaProduk'];
     $harga = $_POST['hargaProduk'];
     $stok_awal = $_POST['stokAwal'];
     $stok_akhir = $_POST['stokAkhir'];
-
-  
-    $stok_awal_baru = $stok_awal - ($stok_akhir - $stok_awal);
+    $id = $_POST['idProduk'];
+    $stok_awal_baru = $stok_awal - $stok_akhir;
 
     $update = mysqli_query($conn, "UPDATE produk SET Nama='$nama', harga='$harga', stok_awal='$stok_awal_baru', stok_akhir='$stok_akhir' WHERE id='$id'");
 

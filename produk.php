@@ -193,10 +193,10 @@
                                         <tr>
                                             <td><?php echo $i++; ?></td>
                                             <td><?php echo $namaproduk; ?></td>
-                                            <td><?php echo $harga; ?></td>
+                                            <td>Rp <?php echo $harga; ?></td>
                                             <td><?php echo $stokawal; ?></td>
                                             <td><?php echo $stokakhir; ?></td>
-                                            <td><?php echo $harga * $stokawal-$stokakhir; ?></td>
+                                            <td>Rp <?php echo $harga * $stokawal-$stokakhir; ?></td>
                                             <td>
                                                 <a href="#" class="btn btn-success " data-toggle="modal" data-target="#EditProduk<?= $idproduk; ?>" >Edit</a>
                                                 <a href="#" class="btn btn-danger " data-toggle="modal" data-target="#HapusProduk<?= $idproduk; ?>">Hapus</a>
@@ -326,6 +326,7 @@
                   <label for="stokAkhir">Stok Akhir:</label>
                   <input type="number" class="form-control" id="stokAkhir" name="stokAkhir" value="<?= $stokakhir; ?>" required>
               </div>
+              <input type="hidden" name="idProduk" value="<?= $idproduk; ?>">
               <button type="submit" class="btn btn-primary" name="editproduk">Edit</button>
           </form>
         </div>
