@@ -42,22 +42,17 @@
                     <!-- Topbar -->
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                         <!-- Topbar Navbar -->
+                        <h6 class="font-weight-bolder mb-0" style="color: #333A73; font-size: 24px; font-family: 'weight', sans-serif;">Dashboard</h6>
                         <ul class="navbar-nav ml-auto">
                             <!-- Nav Item - Alerts -->
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" id="toggleDarkMode">
-                                    <i class="fas fa-fw fa-moon"></i>
-                                    <span>Dark Mode</span>
-                                </a>
-                            </li>
+                            
                             <div class="topbar-divider d-none d-sm-block"></div>
 
                             <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               
-                                    <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                    <i class="fa fa-user me-sm-1"></i>
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -74,6 +69,10 @@
                                         <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Activity Log
                                     </a>
+                                <a class="dropdown-item" href="#" id="toggleDarkMode">
+                                    <i class="fas fa-moon fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <span>Dark Mode</span>
+                                </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -89,13 +88,6 @@
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
-
-                        <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mr-2">Dashboard</h1>
-                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                        </div>
 
                         <!-- Content Row -->
                         <div class="row justify-content-center">
@@ -170,7 +162,7 @@
                                     <!-- Card Header - Dropdown -->
                                     <div
                                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Grafik</h6>
+                                        <h6 class="font-weight-bolder mb-0" style="color: #333A73; font-size: 17px; font-family: 'weight', sans-serif;">Grafik</h6>
                                         <div class="dropdown no-arrow">
                                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -201,7 +193,7 @@
                                     <!-- Card Header - Dropdown -->
                                     <div
                                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Pendapatan</h6>
+                                        <h6 class="font-weight-bolder mb-0" style="color: #333A73; font-size: 17px; font-family: 'weight', sans-serif;">Pendapatan</h6>
                                         <div class="dropdown no-arrow">
                                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -244,7 +236,7 @@
                                 <!-- Project Card Example -->
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Produk</h6>
+                                    <h6 class="font-weight-bolder mb-0" style="color: #333A73; font-size: 17px; font-family: 'weight', sans-serif;">Produk</h6>
                                     </div>
                                     <div class="card-body">
                                         <h4 class="small font-weight-bold">Server Migration <span
