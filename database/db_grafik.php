@@ -35,18 +35,14 @@ if(isset($_POST['editproduk'])){
     $stok_awal = $_POST['stokAwal'];
     $stok_akhir = $_POST['stokAkhir'];
 
-    // Menghitung total harga berdasarkan stok awal
-    $total_awal = $stok_awal * $harga;
+  
+    $stok_awal_baru = $stok_awal - ($stok_akhir - $stok_awal);
 
-    // Menghitung selisih stok dan total harga berdasarkan stok akhir
-    $selisih_stok = $stok_awal - $stok_akhir;
-    $total_akhir = $selisih_stok * $harga;
-
-    $update = mysqli_query($conn, "UPDATE produk SET Nama='$nama', harga='$harga', stok_awal='$stok_awal', stok_akhir='$stok_akhir', Jumlah='$total_akhir' WHERE id='$id'");
+    $update = mysqli_query($conn, "UPDATE produk SET Nama='$nama', harga='$harga', stok_awal='$stok_awal_baru', stok_akhir='$stok_akhir' WHERE id='$id'");
 
     if($update){
         echo '
-        <script>alert("Produk berhasil diperbarui. Total harga awal: Rp '.$total_awal.' - Total harga akhir: Rp '.$total_akhir.'");
+        <script>alert("Produk berhasil diperbarui.");
         window.location.href="produk.php"
         </script>
         ';

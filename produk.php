@@ -1,10 +1,10 @@
+<?php
+    include 'database/db_grafik.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <?php
-    include 'database/db_grafik.php';
-    ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -181,27 +181,25 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                    $query = "SELECT * FROM produk";
-                                    $result = mysqli_query($conn, $query);
+                                    $get = mysqli_query($conn,"select * from produk");
                                     $i = 1;
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        $id = $row['id'];
-                                        $nama = $row['Nama'];
-                                        $harga = $row['harga'];
-                                        $stok_awal = $row['stok_awal'];
-                                        $stok_akhir = $row['stok_akhir'];
-                                        $jumlah = $row['Jumlah'];
+                                    while($p=mysqli_fetch_array($get)){
+                                        $namaproduk = $p['Nama'];
+                                        $harga = $p['harga'];
+                                        $stokawal = $p['stok_awal'];
+                                        $stokakhir = $p['stok_akhir'];
+                                        $idproduk = $p['id'];
                                     ?>
                                         <tr>
                                             <td><?php echo $i++; ?></td>
-                                            <td><?php echo $row['Nama']; ?></td>
-                                            <td><?php echo $row['harga']; ?></td>
-                                            <td><?php echo $row['stok_awal']; ?></td>
-                                            <td><?php echo $row['stok_akhir']; ?></td>
-                                            <td><?php echo $row['Jumlah']; ?></td>
+                                            <td><?php echo $namaproduk; ?></td>
+                                            <td><?php echo $harga; ?></td>
+                                            <td><?php echo $stokawal; ?></td>
+                                            <td><?php echo $stokakhir; ?></td>
+                                            <td><?php echo $harga * $stokawal-$stokakhir; ?></td>
                                             <td>
-                                                <a href="#" class="btn btn-success " data-toggle="modal" data-target="#EditProduk">Edit</a>
-                                                <a href="#" class="btn btn-danger " data-toggle="modal" data-target="#HapusProduk">Hapus</a>
+                                                <a href="#" class="btn btn-success " data-toggle="modal" data-target="#EditProduk<?= $idproduk; ?>" >Edit</a>
+                                                <a href="#" class="btn btn-danger " data-toggle="modal" data-target="#HapusProduk<?= $idproduk; ?>">Hapus</a>
                                             </td>
                                         </tr>
                                     <?php
@@ -212,17 +210,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Content Row -->
-                    <!-- <div class="card" style="width: 18rem;">
-                        <img src="img/custom-case-hp-bp.jpg" class="card-img-top" alt="Deskripsi Gambar">
-                        <div class="card-body">
-                            <h5 class="card-title">Casing</h5>
-                            <p class="card-text">Rp.10.000</p>
-                            <a href="#" class="btn btn-primary">Edit</a>
-                            <a href="#" class="btn btn-danger">Hapus</a>
-                        </div>
-                    </div> -->
 
                     <!-- Content Row -->
                     <div class="row">
@@ -313,19 +300,19 @@
   </div>
 
   <!-- Edit Produk -->
-  <div class="modal fade" id="EditProduk" role="dialog">
+  <div class="modal fade" id="EditProduk<?= $idproduk; ?>" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h3>Edit Data <?=$nama; ?></h3>
+          <h3>Edit Data <?=$namaproduk; ?></h3>
         </div>
         <div class="modal-body">
           <form method="post">
               <div class="form-group">
                   <label for="namaProduk">Nama Produk:</label>
-                  <input type="text" class="form-control" id="namaProduk" name="namaProduk" value="<?= $nama; ?>" required>
+                  <input type="text" class="form-control" id="namaProduk" name="namaProduk" value="<?= $namaproduk; ?>" required>
               </div>
               <div class="form-group">
                   <label for="hargaProduk">Harga Produk:</label>
@@ -333,11 +320,11 @@
               </div>
               <div class="form-group">
                   <label for="stokAwal">Stok Awal:</label>
-                  <input type="number" class="form-control" id="stokAwal" name="stokAwal" value="<?= $stok_awal; ?>" required>
+                  <input type="number" class="form-control" id="stokAwal" name="stokAwal" value="<?= $stokawal; ?>" required>
               </div>
               <div class="form-group">
                   <label for="stokAkhir">Stok Akhir:</label>
-                  <input type="number" class="form-control" id="stokAkhir" name="stokAkhir" value="<?= $stok_akhir; ?>" required>
+                  <input type="number" class="form-control" id="stokAkhir" name="stokAkhir" value="<?= $stokakhir; ?>" required>
               </div>
               <button type="submit" class="btn btn-primary" name="editproduk">Edit</button>
           </form>
@@ -351,7 +338,7 @@
   </div>
 
   <!-- Hapus Produk -->
-  <div class="modal fade" id="HapusProduk" role="dialog">
+  <div class="modal fade" id="HapusProduk<?= $idproduk; ?>" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -361,8 +348,8 @@
         </div>
         <form method="post">
           <div class="modal-body">
-            <h5>Yakin untuk menghapus produk <?= $nama; ?>?</h5>
-            <input type="hidden" name="idProduk" value="<?= $id; ?>">
+            <h5>Yakin untuk menghapus produk <?= $namaproduk; ?>?</h5>
+            <input type="hidden" name="idProduk" value="<?= $idproduk; ?>">
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-danger" name="hapusproduk">Hapus</button>
