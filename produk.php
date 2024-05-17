@@ -180,31 +180,96 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php
-                                    $get = mysqli_query($conn,"select * from produk");
-                                    $i = 1;
-                                    while($p=mysqli_fetch_array($get)){
-                                        $namaproduk = $p['Nama'];
-                                        $harga = $p['harga'];
-                                        $stokawal = $p['stok_awal'];
-                                        $stokakhir = $p['stok_akhir'];
-                                        $idproduk = $p['id'];
-                                    ?>
-                                        <tr>
-                                            <td><?php echo $i++; ?></td>
-                                            <td><?php echo $namaproduk; ?></td>
-                                            <td>Rp <?php echo $harga; ?></td>
-                                            <td><?php echo $stokawal; ?></td>
-                                            <td><?php echo $stokakhir; ?></td>
-                                            <td>Rp <?php echo $harga * $stokawal-$stokakhir; ?></td>
-                                            <td>
-                                                <a href="#" class="btn btn-success " data-toggle="modal" data-target="#EditProduk<?= $idproduk; ?>" >Edit</a>
-                                                <a href="#" class="btn btn-danger " data-toggle="modal" data-target="#HapusProduk<?= $idproduk; ?>">Hapus</a>
-                                            </td>
-                                        </tr>
-                                    <?php
-                                    }
-                                    ?>
+                                   <?php
+$query = "SELECT * FROM produk";
+$result = mysqli_query($conn, $query);
+$i = 1;
+while($p = mysqli_fetch_array($result)){
+    $namaproduk = $p['Nama'];
+    $harga = $p['harga'];
+    $stokawal = $p['stok_awal'];
+    $stokakhir = $p['stok_akhir'];
+    $idproduk = $p['id'];
+?>
+    <tr>
+        <td><?php echo $i++; ?></td>
+        <td><?php echo $namaproduk; ?></td>
+        <td>Rp <?php echo $harga; ?></td>
+        <td><?php echo $stokawal; ?></td>
+        <td><?php echo $stokakhir; ?></td>
+        <td>Rp <?php echo $harga * $stokawal - $stokakhir; ?></td>
+        <td>
+            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#EditProduk<?php echo $idproduk; ?>">Edit</a>
+            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#HapusProduk<?php echo $idproduk; ?>">Hapus</a>
+        </td>
+    </tr>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="EditProduk<?php echo $idproduk; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="produk.php" method="POST">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Produk</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="idProduk" value="<?php echo $idproduk; ?>">
+                        <div class="form-group">
+                            <label>Nama Produk</label>
+                            <input type="text" name="namaProduk" class="form-control" value="<?php echo $namaproduk; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Harga Produk</label>
+                            <input type="number" name="hargaProduk" class="form-control" value="<?php echo $harga; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Stok Awal</label>
+                            <input type="number" name="stokAwal" class="form-control" value="<?php echo $stokawal; ?>" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Stok Akhir</label>
+                            <input type="number" name="stokAkhir" class="form-control" value="<?php echo $stokakhir; ?>">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" name="editproduk" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="HapusProduk<?php echo $idproduk; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="produk.php" method="POST">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Hapus Produk</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Apakah Anda yakin ingin menghapus produk ini?</p>
+                        <input type="hidden" name="idProduk" value="<?php echo $idproduk; ?>">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" name="hapusproduk" class="btn btn-danger">Hapus</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<?php
+}
+?>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -304,6 +369,8 @@
     <div class="modal-dialog">
     
       <!-- Modal content-->
+
+
       <div class="modal-content">
         <div class="modal-header">
           <h3>Edit Data <?=$namaproduk; ?></h3>
@@ -320,7 +387,7 @@
               </div>
               <div class="form-group">
                   <label for="stokAwal">Stok Awal:</label>
-                  <input type="number" class="form-control" id="stokAwal" name="stokAwal" value="<?= $stokawal; ?>" required>
+                  <input type="number" class="form-control" id="stokAwal" name="stokAwal" value="<?= $stokawal; ?>" required disabled>
               </div>
               <div class="form-group">
                   <label for="stokAkhir">Stok Akhir:</label>
