@@ -192,17 +192,18 @@ while($p = mysqli_fetch_array($result)){
     $idproduk = $p['id'];
 ?>
     <tr>
-        <td><?php echo $i++; ?></td>
-        <td><?php echo $namaproduk; ?></td>
-        <td>Rp <?php echo $harga; ?></td>
-        <td><?php echo $stokawal; ?></td>
-        <td><?php echo $stokakhir; ?></td>
-        <td>Rp <?php echo $harga * $stokawal - $stokakhir; ?></td>
-        <td>
-            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#EditProduk<?php echo $idproduk; ?>">Edit</a>
-            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#HapusProduk<?php echo $idproduk; ?>">Hapus</a>
-        </td>
-    </tr>
+    <td><?php echo $i++; ?></td>
+    <td><?php echo $namaproduk; ?></td>
+    <td>Rp <?php echo number_format($harga, 0, ',', '.'); ?></td>
+    <td><?php echo $stokawal; ?></td>
+    <td><?php echo $stokakhir; ?></td>
+    <td>Rp <?php echo number_format($harga * ($stokawal - $stokakhir), 0, ',', '.'); ?></td>
+    <td>
+        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#EditProduk<?php echo $idproduk; ?>">Edit</a>
+        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#HapusProduk<?php echo $idproduk; ?>">Hapus</a>
+    </td>
+</tr>
+
 
     <!-- Edit Modal -->
     <div class="modal fade" id="EditProduk<?php echo $idproduk; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -432,6 +433,13 @@ while($p = mysqli_fetch_array($result)){
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Page level plugins -->
+        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="js/demo/datatables-demo.js"></script>
 
         <!-- Core plugin JavaScript-->
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
