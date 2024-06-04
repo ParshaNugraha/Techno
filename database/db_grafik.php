@@ -14,8 +14,9 @@ if(isset($_POST['tambahproduk'])){
     $nama = $_POST['namaProduk'];
     $harga = $_POST['hargaProduk'];
     $stok_awal = $_POST['stokAwal'];
+    $stok_akhir = $stok_awal; // agar stok_akhir isinya sama dengan stok_awal
 
-    $insert = mysqli_query($conn, "INSERT INTO produk (Nama, harga, stok_awal) VALUES ('$nama', '$harga', '$stok_awal')");
+    $insert = mysqli_query($conn, "INSERT INTO produk (Nama, harga, stok_awal, stok_akhir) VALUES ('$nama', '$harga', '$stok_awal', '$stok_akhir')");
 
     if($insert){
         header('location:produk.php');
@@ -29,6 +30,7 @@ if(isset($_POST['editproduk'])){
     $namaProduk = $_POST['namaProduk'];
     $hargaProduk = $_POST['hargaProduk'];
     $stokAkhir = $_POST['stokAkhir'];
+    $terjual = $_POST['terjual'];
     
     // Dapatkan stok awal dari database
     $query = "SELECT stok_awal FROM produk WHERE id='$idProduk'";
@@ -38,8 +40,10 @@ if(isset($_POST['editproduk'])){
 
     // Validasi stok akhir
     if ($stokAkhir <= $stokAwal) {
-        $stok_awal_baru = $stokAwal - $stokAkhir;
-        $update = mysqli_query($conn, "UPDATE produk SET Nama='$namaProduk', harga='$hargaProduk', stok_awal='$stok_awal_baru', stok_akhir='$stokAkhir' WHERE id='$idProduk'");
+        $stok_awal_baru = $stokAwal;
+        $stok_akhir_baru = $stokAkhir - $terjual;
+        $terjual_baru = $terjual + ($stokAwal - $stok_akhir_baru);
+        $update = mysqli_query($conn, "UPDATE produk SET Nama='$namaProduk', harga='$hargaProduk', stok_awal='$stok_awal_baru', stok_akhir='$stok_akhir_baru', terjual='$terjual_baru' WHERE id='$idProduk'");
         if($update){
             echo '<script>alert("Produk berhasil diperbarui."); window.location.href="produk.php";</script>';
         } else {

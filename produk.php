@@ -171,10 +171,11 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama</th>
+                                            <th>Nama Produk</th>
                                             <th>Harga</th>                                          
                                             <th>Stok Awal</th>
                                             <th>Stok Akhir</th>
+                                            <th>Produk Yang Terjual</th>
                                             <th>Jumlah</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -190,6 +191,7 @@ while($p = mysqli_fetch_array($result)){
     $stokawal = $p['stok_awal'];
     $stokakhir = $p['stok_akhir'];
     $idproduk = $p['id'];
+    $terjual = $p['terjual']
 ?>
     <tr>
     <td><?php echo $i++; ?></td>
@@ -197,7 +199,8 @@ while($p = mysqli_fetch_array($result)){
     <td>Rp <?php echo number_format($harga, 0, ',', '.'); ?></td>
     <td><?php echo $stokawal; ?></td>
     <td><?php echo $stokakhir; ?></td>
-    <td>Rp <?php echo number_format($harga * ($stokawal - $stokakhir), 0, ',', '.'); ?></td>
+    <td><?php echo $terjual; ?></td>
+    <td>Rp <?php echo number_format($harga * $terjual, 0, ',', '.'); ?></td>
     <td>
         <a href="#" class="btn btn-success" data-toggle="modal" data-target="#EditProduk<?php echo $idproduk; ?>">Edit</a>
         <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#HapusProduk<?php echo $idproduk; ?>">Hapus</a>
@@ -234,6 +237,10 @@ while($p = mysqli_fetch_array($result)){
                             <label>Stok Akhir</label>
                             <input type="number" name="stokAkhir" class="form-control" value="<?php echo $stokakhir; ?>">
                         </div>
+                        <div class="form-group">
+                            <label>Produk Yang Terjual</label>
+                            <input type="number" name="stokAkhir" class="form-control" value="<?php echo $terjual; ?>">
+                        </div>                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
