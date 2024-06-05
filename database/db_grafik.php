@@ -24,35 +24,38 @@ if(isset($_POST['tambahproduk'])){
         echo '<script>alert("Gagal menambah produk baru"); window.location.href="produk.php";</script>';
     }
 }
-
 if(isset($_POST['editproduk'])){
     $idProduk = $_POST['idProduk'];
     $namaProduk = $_POST['namaProduk'];
     $hargaProduk = $_POST['hargaProduk'];
-    $stokAkhir = $_POST['stokAkhir'];
     $terjual = $_POST['terjual'];
-    
-    // Dapatkan stok awal dari database
-    $query = "SELECT stok_awal FROM produk WHERE id='$idProduk'";
+
+    // Dapatkan stok awal dan stok akhir dari database
+    $query = "SELECT stok_awal, stok_akhir, terjual FROM produk WHERE id='$idProduk'";
     $result = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($result);
     $stokAwal = $row['stok_awal'];
+    $stokAkhir = $row['stok_akhir'];
+    $terjualSebelumnya = $row['terjual'];
 
-    // Validasi stok akhir
-    if ($stokAkhir <= $stokAwal) {
-        $stok_awal_baru = $stokAwal;
-        $stok_akhir_baru = $stokAkhir - $terjual;
-        $terjual_baru = $terjual + ($stokAwal - $stok_akhir_baru);
-        $update = mysqli_query($conn, "UPDATE produk SET Nama='$namaProduk', harga='$hargaProduk', stok_awal='$stok_awal_baru', stok_akhir='$stok_akhir_baru', terjual='$terjual_baru' WHERE id='$idProduk'");
+    // Hitung stok akhir baru
+    $stok_akhir_baru = $stokAkhir - $terjual;
+    $terjual_baru = $terjualSebelumnya + $terjual;
+
+    // Validasi stok akhir baru
+    if ($stok_akhir_baru >= 0) {
+        $update = mysqli_query($conn, "UPDATE produk SET Nama='$namaProduk', harga='$hargaProduk', stok_awal='$stokAwal', stok_akhir='$stok_akhir_baru', terjual='$terjual_baru' WHERE id='$idProduk'");
+        
         if($update){
             echo '<script>alert("Produk berhasil diperbarui."); window.location.href="produk.php";</script>';
         } else {
             echo '<script>alert("Gagal memperbarui produk"); window.location.href="produk.php";</script>';
         }
     } else {
-        echo '<script>alert("Stok akhir tidak boleh lebih besar dari stok awal."); window.location.href="produk.php";</script>';
+        echo '<script>alert("Stok akhir tidak boleh kurang dari nol."); window.location.href="produk.php";</script>';
     }
 }
+
 
 if(isset($_POST['hapusproduk'])){
     $id = $_POST['idProduk'];

@@ -235,11 +235,11 @@ while($p = mysqli_fetch_array($result)){
                         </div>
                         <div class="form-group">
                             <label>Stok Akhir</label>
-                            <input type="number" name="stokAkhir" class="form-control" value="<?php echo $stokakhir; ?>">
+                            <input type="number" name="stokAkhir" class="form-control" value="<?php echo $stokakhir; ?>"disabled>
                         </div>
                         <div class="form-group">
                             <label>Produk Yang Terjual</label>
-                            <input type="number" name="stokAkhir" class="form-control" value="<?php echo $terjual; ?>">
+                            <input type="number" name="terjual" class="form-control" value="<?php echo $terjual; ?>">
                         </div>                        
                     </div>
                     <div class="modal-footer">
@@ -373,7 +373,7 @@ while($p = mysqli_fetch_array($result)){
   </div>
 
   <!-- Edit Produk -->
-  <div class="modal fade" id="EditProduk<?= $idproduk; ?>" role="dialog">
+  <div class="modal fade" id="EditProduk" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -381,27 +381,27 @@ while($p = mysqli_fetch_array($result)){
 
       <div class="modal-content">
         <div class="modal-header">
-          <h3>Edit Data <?=$namaproduk; ?></h3>
+          <h3>Edit Data</h3>
         </div>
         <div class="modal-body">
           <form method="post">
               <div class="form-group">
                   <label for="namaProduk">Nama Produk:</label>
-                  <input type="text" class="form-control" id="namaProduk" name="namaProduk" value="<?= $namaproduk; ?>" required>
+                  <input type="text" class="form-control" id="namaProduk" name="namaProduk" required>
               </div>
               <div class="form-group">
                   <label for="hargaProduk">Harga Produk:</label>
-                  <input type="number" class="form-control" id="hargaProduk" name="hargaProduk" value="<?= $harga; ?>" required>
+                  <input type="number" class="form-control" id="hargaProduk" name="hargaProduk" required>
               </div>
               <div class="form-group">
                   <label for="stokAwal">Stok Awal:</label>
-                  <input type="number" class="form-control" id="stokAwal" name="stokAwal" value="<?= $stokawal; ?>" required disabled>
+                  <input type="number" class="form-control" id="stokAwal" name="stokAwal" required disabled>
               </div>
               <div class="form-group">
                   <label for="stokAkhir">Stok Akhir:</label>
-                  <input type="number" class="form-control" id="stokAkhir" name="stokAkhir" value="<?= $stokakhir; ?>" required>
+                  <input type="number" class="form-control" id="stokAkhir" name="stokAkhir" required>
               </div>
-              <input type="hidden" name="idProduk" value="<?= $idproduk; ?>">
+              <input type="hidden" name="idProduk">
               <button type="submit" class="btn btn-primary" name="editproduk">Edit</button>
           </form>
         </div>
