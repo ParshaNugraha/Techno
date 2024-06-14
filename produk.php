@@ -168,46 +168,49 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama Produk</th>
-                                            <th>Harga</th>                                          
-                                            <th>Stok Awal</th>
-                                            <th>Stok Akhir</th>
-                                            <th>Produk Yang Terjual</th>
-                                            <th>Jumlah</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                   <?php
-$query = "SELECT * FROM produk";
-$result = mysqli_query($conn, $query);
-$i = 1;
-while($p = mysqli_fetch_array($result)){
-    $namaproduk = $p['Nama'];
-    $harga = $p['harga'];
-    $stokawal = $p['stok_awal'];
-    $stokakhir = $p['stok_akhir'];
-    $idproduk = $p['id'];
-    $terjual = $p['terjual']
-?>
-    <tr>
-    <td><?php echo $i++; ?></td>
-    <td><?php echo $namaproduk; ?></td>
-    <td>Rp <?php echo number_format($harga, 0, ',', '.'); ?></td>
-    <td><?php echo $stokawal; ?></td>
-    <td><?php echo $stokakhir; ?></td>
-    <td><?php echo $terjual; ?></td>
-    <td>Rp <?php echo number_format($harga * $terjual, 0, ',', '.'); ?></td>
-    <td>
-        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#EditProduk<?php echo $idproduk; ?>">Edit</a>
-        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#HapusProduk<?php echo $idproduk; ?>">Hapus</a>
-    </td>
-</tr>
-
-
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Tanggal</th>
+            <th>Nama Produk</th>
+            <th>Harga Satuan</th>
+            <th>Stok Awal</th>
+            <th>Stok Akhir</th>
+            <th>Produk Yang Terjual</th>
+            <th>Jumlah</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $query = "SELECT * FROM produk JOIN pendapatan ON produk.id = pendapatan.produk_id";
+        $result = mysqli_query($conn, $query);
+        $i = 1;
+        while($p = mysqli_fetch_array($result)){
+            $namaproduk = $p['Nama'];
+            $harga = $p['harga'];
+            $stokawal = $p['stok_awal'];
+            $stokakhir = $p['stok_akhir'];
+            $idproduk = $p['id'];
+            $terjual = $p['terjual'];
+            $bulan = array('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+            $tgl = strftime('%e ', strtotime($p['tanggal'])) . $bulan[date('n', strtotime($p['tanggal'])) - 1] . strftime(' %Y', strtotime($p['tanggal'])); // Ubah format tanggal ke bahasa Indonesia
+            $jumlah = $p['Jumlah'];
+        ?>
+        <tr>
+            <td><?php echo $i++; ?></td>
+            <td><?php echo $tgl; ?></td>
+            <td><?php echo $namaproduk; ?></td>
+            <td>Rp <?php echo number_format($harga, 0, ',', '.'); ?></td>
+            <td><?php echo $stokawal; ?></td>
+            <td><?php echo $stokakhir; ?></td>
+            <td><?php echo $terjual; ?></td>
+            <td>Rp <?php echo number_format($jumlah, 0, ',', '.'); ?></td>
+            <td>
+                <a href="#" class="btn btn-success" data-toggle="modal" data-target="#EditProduk<?php echo $idproduk; ?>">Edit</a>
+                <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#HapusProduk<?php echo $idproduk; ?>">Hapus</a>
+            </td>
+        </tr>
     <!-- Edit Modal -->
     <div class="modal fade" id="EditProduk<?php echo $idproduk; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -465,3 +468,4 @@ while($p = mysqli_fetch_array($result)){
 </body>
 
 </html>
+

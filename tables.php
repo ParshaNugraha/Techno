@@ -1,3 +1,6 @@
+<?php
+    include 'database/db_grafik.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -167,30 +170,120 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>No</th>
+                                            <th>Tanggal</th>
                                             <th>Nama Produk</th>
                                             <th>Harga Beli</th>
                                             <th>Harga Jual</th>
                                             <th>Untung</th>
                                             <th>Rugi</th>
-                                            <th>Tanggal</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                         </tr>
-                                    </thead>
                                     <tbody>
+                                   <?php
+ $query = "SELECT * FROM produk JOIN pendapatan ON produk.id = pendapatan.produk_id";
+$result = mysqli_query($conn, $query);
+$i = 1;
+while($p = mysqli_fetch_array($result)){
+    $namaproduk = $p['Nama'];
+    $hargajual = $p['harga'];
+    $hargabeli = $p['harga_beli'];
+    $hargajual = $p['harga_jual'];
+    $untung = $p['untung'];
+    $rugi = $p['rugi'];
+    $idproduk = $p['id'];
+    $idpendapatan = $p['id_pendapatan'];
+    $terjual = $p['terjual'];
+    $bulan = array('Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+    $tgl = strftime('%e ', strtotime($p['tanggal'])) . $bulan[date('n', strtotime($p['tanggal'])) - 1] . strftime(' %Y', strtotime($p['tanggal']));
+    $jumlah = $p['Jumlah']
+?>
+    <tr>
+    <td><?php echo $i++; ?></td>
+    <td><?php echo $tgl; ?></td>
+    <td><?php echo $namaproduk; ?></td>
+    <td>Rp <?php echo number_format($hargabeli, 0, ',', '.'); ?></td>
+    <td>Rp <?php echo number_format($hargajual, 0, ',', '.'); ?></td>
+    <td>Rp <?php echo $untung ; ?></td>
+    <td>Rp <?php echo $rugi ; ?></td>
+    <td>
+        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#EditPendapatan<?php echo $idpendapatan; ?>">Edit</a>
+        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#HapusPendapatan<?php echo $idpendapatan; ?>">Hapus</a>
+    </td>
+</tr>
 
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                            <td><a href="#" class="btn btn-success " data-toggle="modal" data-target="#EditProduk">Edit</a>
-                                                <a href="#" class="btn btn-danger " data-toggle="modal" data-target="#HapusProduk">Hapus</a></td>
-                                        </tr>
-                         
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="EditPendapatan<?php echo $idpendapatan; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="produk.php" method="POST">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Produk</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="idPendapatan" value="<?php echo $idpendapatan; ?>">
+                        <div class="form-group">
+                            <label>Nama Produk</label>
+                            <input type="text" name="namaProduk" class="form-control" value="<?php echo $namaproduk; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Harga Beli</label>
+                            <input type="number" name="hargaProduk" class="form-control" value="<?php echo $hargabeli; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Harga Jual</label>
+                            <input type="number" name="stokAwal" class="form-control" value="<?php echo $hargajual; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Untung</label>
+                            <input type="number" name="terjual" class="form-control" value="<?php echo $untung; ?>">
+                        </div>      
+                        <div class="form-group">
+                            <label>Rugi</label>
+                            <input type="number" name="terjual" class="form-control" value="<?php echo $rugi; ?>">
+                        </div>                     
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" name="editproduk" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="HapusProduk<?php echo $idproduk; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="produk.php" method="POST">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Hapus Produk</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Apakah Anda yakin ingin menghapus produk ini?</p>
+                        <input type="hidden" name="idProduk" value="<?php echo $idproduk; ?>">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" name="hapusproduk" class="btn btn-danger">Hapus</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<?php
+}
+?>
                                     </tbody>
                                 </table>
                             </div>

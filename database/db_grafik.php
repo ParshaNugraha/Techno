@@ -16,11 +16,19 @@ if(isset($_POST['tambahproduk'])){
     $stok_awal = $_POST['stokAwal'];
     $stok_akhir = $stok_awal; // agar stok_akhir isinya sama dengan stok_awal
 
-    $insert = mysqli_query($conn, "INSERT INTO produk (Nama, harga, stok_awal, stok_akhir) VALUES ('$nama', '$harga', '$stok_awal', '$stok_akhir')");
+    $insert_produk = mysqli_query($conn, "INSERT INTO produk (Nama, harga, stok_awal, stok_akhir) VALUES ('$nama', '$harga', '$stok_awal', '$stok_akhir')");
 
-    if($insert){
-        header('location:produk.php');
-    }else{
+    if($insert_produk){
+        $id_produk_baru = mysqli_insert_id($conn);
+
+        $insert_pendapatan = mysqli_query($conn, "INSERT INTO pendapatan (produk_id, harga_jual, tanggal, untung, rugi) VALUES ('$id_produk_baru', '$harga', CURDATE(), 0, 0)");
+
+        if($insert_pendapatan){
+            header('location:produk.php');
+        } else {
+            echo '<script>alert("Gagal menambah produk baru ke tabel pendapatan"); window.location.href="produk.php";</script>';
+        }
+    } else {
         echo '<script>alert("Gagal menambah produk baru"); window.location.href="produk.php";</script>';
     }
 }
@@ -42,9 +50,11 @@ if(isset($_POST['editproduk'])){
     $stok_akhir_baru = $stokAkhir - $terjual;
     $terjual_baru = $terjualSebelumnya + $terjual;
 
+    $jumlahtotal = $hargaProduk * $terjual_baru;
+
     // Validasi stok akhir baru
     if ($stok_akhir_baru >= 0) {
-        $update = mysqli_query($conn, "UPDATE produk SET Nama='$namaProduk', harga='$hargaProduk', stok_awal='$stokAwal', stok_akhir='$stok_akhir_baru', terjual='$terjual_baru' WHERE id='$idProduk'");
+        $update = mysqli_query($conn, "UPDATE produk SET Nama='$namaProduk', harga='$hargaProduk', stok_awal='$stokAwal', stok_akhir='$stok_akhir_baru', terjual='$terjual_baru', Jumlah='$jumlahtotal' WHERE id='$idProduk'");
         
         if($update){
             echo '<script>alert("Produk berhasil diperbarui."); window.location.href="produk.php";</script>';
@@ -60,6 +70,9 @@ if(isset($_POST['editproduk'])){
 if(isset($_POST['hapusproduk'])){
     $id = $_POST['idProduk'];
 
-    $delete = mysqli_query($conn, "DELETE FROM produk WHERE id='$id'");
+    $delete_produk = mysqli_query($conn, "DELETE FROM produk WHERE id='$id'");
+    $delete_pendapatan = mysqli_query($conn, "DELETE FROM pendapatan WHERE produk_id='$id'");
 }
+
+
 ?>
