@@ -62,11 +62,11 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="tables.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Pendapatan</span></a>
-            </li>
+            </li> -->
 
             <!-- Nav Item - Product -->
             <li class="nav-item">

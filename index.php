@@ -112,7 +112,7 @@
                             </div>
 
                             <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-xl-3 col-md-6 mb-4">
+                            <!-- <div class="col-xl-3 col-md-6 mb-4">
                                 <a href="tables.php" style="text-decoration: none;">
                                     <div class="card border-left-success shadow h-100 py-2">
                                         <div class="card-body">
@@ -129,7 +129,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            </div>
+                            </div> -->
 
                             <!-- Earnings (Monthly) Card Example -->
                             <div class="col-xl-3 col-md-6 mb-4">
@@ -174,15 +174,15 @@
                             </div>
 
                             <!-- Pie Chart -->
-                            <div class="col-xl-4 col-lg-5">
-                                <div class="card shadow mb-4">
+                            <!-- <div class="col-xl-4 col-lg-5">
+                                <div class="card shadow mb-4"> -->
                                     <!-- Card Header - Dropdown -->
-                                    <div
+                                    <!-- <div
                                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                         <h6 class="font-weight-bolder mb-0" style="color: #333A73; font-size: 17px; font-family: 'weight', sans-serif;">Pendapatan</h6>
-                                    </div>
+                                    </div> -->
                                     <!-- Card Body -->
-                                    <div class="card-body">
+                                    <!-- <div class="card-body">
                                         <div class="chart-pie pt-4 pb-2">
                                             <canvas id="myPieChart"></canvas>
                                         </div>
@@ -197,7 +197,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- Content Row -->
                         <div class="row">
